@@ -20,6 +20,7 @@
     </parent>
 
     <artifactId>seed-neo4j</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <seed.version>2.0.0</seed.version>
