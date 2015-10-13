@@ -30,7 +30,6 @@ import org.seedstack.seed.transaction.internal.TransactionPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -146,11 +145,7 @@ public class Neo4jPlugin extends AbstractPlugin {
         String propertiesURL = graphDatabaseConfiguration.getString("properties");
 
         if (path == null || path.isEmpty()) {
-            try {
-                path = application.getStorageLocation(String.format("neo4j/%s", name)).getAbsolutePath();
-            } catch (IOException e) {
-                throw new PluginException("Unable to access local storage", e);
-            }
+            path = application.getStorageLocation(String.format("neo4j/%s", name)).getAbsolutePath();
         }
 
         GraphDatabaseBuilder databaseBuilder = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(path);
