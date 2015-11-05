@@ -7,7 +7,7 @@
  */
 package org.seedstack.seed.persistence.neo4j.api;
 
-import org.seedstack.seed.core.api.ErrorCode;
+import org.seedstack.seed.ErrorCode;
 
 public enum Neo4jErrorCodes implements ErrorCode {
     UNABLE_TO_LOAD_EXCEPTION_HANDLER_CLASS,

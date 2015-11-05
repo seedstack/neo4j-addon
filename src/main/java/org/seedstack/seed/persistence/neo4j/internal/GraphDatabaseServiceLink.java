@@ -9,7 +9,7 @@ package org.seedstack.seed.persistence.neo4j.internal;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
-import org.seedstack.seed.core.api.SeedException;
+import org.seedstack.seed.SeedException;
 import org.seedstack.seed.persistence.neo4j.api.Neo4jErrorCodes;
 import org.seedstack.seed.transaction.spi.TransactionalLink;
 

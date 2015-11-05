@@ -14,7 +14,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation accompanies the {@link org.seedstack.seed.transaction.api.Transactional} annotation to define the
+ * This annotation accompanies the {@link org.seedstack.seed.transaction.Transactional} annotation to define the
  * transaction as a Neo4j one and specify the concerned Neo4j graph database.
  *
  * @author adrien.lauer@mpsa.com

@@ -9,7 +9,7 @@ package org.seedstack.seed.persistence.neo4j.fixtures;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
-import org.seedstack.seed.it.api.ITBind;
+import org.seedstack.seed.it.ITBind;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

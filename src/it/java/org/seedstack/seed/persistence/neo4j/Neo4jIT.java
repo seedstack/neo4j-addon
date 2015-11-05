@@ -8,14 +8,14 @@
 package org.seedstack.seed.persistence.neo4j;
 
 import org.junit.Test;
-import org.seedstack.seed.core.api.SeedException;
+import org.seedstack.seed.SeedException;
 import org.seedstack.seed.it.AbstractSeedIT;
 import org.seedstack.seed.persistence.neo4j.api.Neo4jDb;
 import org.seedstack.seed.persistence.neo4j.fixtures.Item;
 import org.seedstack.seed.persistence.neo4j.fixtures.ItemRepository;
 import org.seedstack.seed.persistence.neo4j.fixtures.ItemThrowableHandler;
-import org.seedstack.seed.transaction.api.Propagation;
-import org.seedstack.seed.transaction.api.Transactional;
+import org.seedstack.seed.transaction.Propagation;
+import org.seedstack.seed.transaction.Transactional;
 
 import javax.inject.Inject;
 
