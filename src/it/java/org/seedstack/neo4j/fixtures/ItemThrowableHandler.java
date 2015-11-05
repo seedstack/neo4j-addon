@@ -5,12 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j.fixtures;
+package org.seedstack.neo4j.fixtures;
 
 import org.neo4j.graphdb.Transaction;
-import org.seedstack.seed.core.api.Logging;
-import org.seedstack.seed.it.api.ITBind;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jExceptionHandler;
+import org.seedstack.neo4j.Neo4jExceptionHandler;
+import org.seedstack.seed.Logging;
+import org.seedstack.seed.it.ITBind;
 import org.seedstack.seed.transaction.spi.TransactionMetadata;
 import org.slf4j.Logger;
 

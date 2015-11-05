@@ -5,18 +5,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j.internal;
+package org.seedstack.neo4j.internal;
 
 import org.aopalliance.intercept.MethodInvocation;
+import org.seedstack.neo4j.Neo4jDb;
+import org.seedstack.neo4j.Neo4jExceptionHandler;
 import org.seedstack.seed.core.utils.SeedReflectionUtils;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jDb;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jExceptionHandler;
 import org.seedstack.seed.transaction.spi.TransactionMetadata;
 import org.seedstack.seed.transaction.spi.TransactionMetadataResolver;
 
 /**
  * This {@link TransactionMetadataResolver} resolves metadata for transactions marked
- * with {@link org.seedstack.seed.persistence.neo4j.api.Neo4jDb}.
+ * with {@link Neo4jDb}.
  *
  * @author adrien.lauer@mpsa.com
  */

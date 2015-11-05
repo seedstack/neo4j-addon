@@ -6,8 +6,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-[org.seedstack.seed.persistence.neo4j]
+[org.seedstack.neo4j]
 databases = db1, db2, db3
 database.db3.setting.read_only = true
-database.db3.exception-handler = org.seedstack.seed.persistence.neo4j.fixtures.ItemThrowableHandler
+database.db3.exception-handler = org.seedstack.neo4j.fixtures.ItemThrowableHandler
 

@@ -5,15 +5,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j.internal;
+package org.seedstack.neo4j.internal;
 
 import com.google.inject.PrivateModule;
 import com.google.inject.name.Names;
 import com.google.inject.util.Providers;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jExceptionHandler;
+import org.seedstack.neo4j.Neo4jExceptionHandler;
 import org.seedstack.seed.transaction.spi.TransactionConcern;
-import org.seedstack.seed.transaction.utils.TransactionalProxy;
+import org.seedstack.seed.transaction.spi.TransactionalProxy;
 
 import java.util.Map;
 
