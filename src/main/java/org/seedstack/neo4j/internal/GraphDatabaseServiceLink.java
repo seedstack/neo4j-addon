@@ -5,12 +5,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j.internal;
+package org.seedstack.neo4j.internal;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
 import org.seedstack.seed.SeedException;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jErrorCodes;
 import org.seedstack.seed.transaction.spi.TransactionalLink;
 
 import java.util.ArrayDeque;
@@ -29,7 +28,6 @@ class GraphDatabaseServiceLink implements TransactionalLink<GraphDatabaseService
         if (this.perThreadObjectContainer.get().peek() == null) {
             throw SeedException.createNew(Neo4jErrorCodes.ACCESSING_DATABASE_OUTSIDE_TRANSACTION);
         }
-
         return this.graphDatabaseService;
     }
 

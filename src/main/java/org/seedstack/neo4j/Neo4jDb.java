@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j.api;
+package org.seedstack.neo4j;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface Neo4jDb {
+
     /**
      * @return the configured graph database name.
      */

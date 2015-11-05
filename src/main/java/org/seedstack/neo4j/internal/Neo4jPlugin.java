@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j.internal;
+package org.seedstack.neo4j.internal;
 
 import io.nuun.kernel.api.Plugin;
 import io.nuun.kernel.api.plugin.InitState;
@@ -19,11 +19,10 @@ import org.neo4j.graphdb.config.Setting;
 import org.neo4j.graphdb.factory.GraphDatabaseBuilder;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.factory.GraphDatabaseSettings;
+import org.seedstack.neo4j.Neo4jExceptionHandler;
 import org.seedstack.seed.Application;
 import org.seedstack.seed.SeedException;
 import org.seedstack.seed.core.internal.application.ApplicationPlugin;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jErrorCodes;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jExceptionHandler;
 import org.seedstack.seed.transaction.internal.TransactionPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +36,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Neo4jPlugin extends AbstractPlugin {
-    public static final String NEO4J_PLUGIN_CONFIGURATION_PREFIX = "org.seedstack.seed.persistence.neo4j";
+    public static final String CONFIGURATION_PREFIX = "org.seedstack.neo4j";
     public static final String EXCEPTION_DB_NAME = "dbName";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Neo4jPlugin.class);
@@ -47,7 +46,7 @@ public class Neo4jPlugin extends AbstractPlugin {
 
     @Override
     public String name() {
-        return "seed-persistence-neo4j-plugin";
+        return "neo4j";
     }
 
     @Override
@@ -60,7 +59,7 @@ public class Neo4jPlugin extends AbstractPlugin {
         for (Plugin plugin : initContext.pluginsRequired()) {
             if (plugin instanceof ApplicationPlugin) {
                 application = ((ApplicationPlugin) plugin).getApplication();
-                neo4jConfiguration = application.getConfiguration().subset(Neo4jPlugin.NEO4J_PLUGIN_CONFIGURATION_PREFIX);
+                neo4jConfiguration = application.getConfiguration().subset(Neo4jPlugin.CONFIGURATION_PREFIX);
             } else if (plugin instanceof TransactionPlugin) {
                 transactionPlugin = (TransactionPlugin) plugin;
             }
@@ -87,7 +86,8 @@ public class Neo4jPlugin extends AbstractPlugin {
                 try {
                     exceptionHandlerClasses.put(graphDatabaseName, (Class<? extends Neo4jExceptionHandler>) Class.forName(exceptionHandler));
                 } catch (Exception e) {
-                    throw SeedException.wrap(e, Neo4jErrorCodes.UNABLE_TO_LOAD_EXCEPTION_HANDLER_CLASS).put(EXCEPTION_DB_NAME, graphDatabaseName).put("exceptionHandlerClass", exceptionHandler);
+                    throw SeedException.wrap(e, Neo4jErrorCodes.UNABLE_TO_LOAD_EXCEPTION_HANDLER_CLASS)
+                            .put(EXCEPTION_DB_NAME, graphDatabaseName).put("exceptionHandlerClass", exceptionHandler);
                 }
             }
 

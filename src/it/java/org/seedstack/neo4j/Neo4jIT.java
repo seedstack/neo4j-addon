@@ -5,15 +5,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package org.seedstack.seed.persistence.neo4j;
+package org.seedstack.neo4j;
 
 import org.junit.Test;
 import org.seedstack.seed.SeedException;
 import org.seedstack.seed.it.AbstractSeedIT;
-import org.seedstack.seed.persistence.neo4j.api.Neo4jDb;
-import org.seedstack.seed.persistence.neo4j.fixtures.Item;
-import org.seedstack.seed.persistence.neo4j.fixtures.ItemRepository;
-import org.seedstack.seed.persistence.neo4j.fixtures.ItemThrowableHandler;
+import org.seedstack.neo4j.fixtures.Item;
+import org.seedstack.neo4j.fixtures.ItemRepository;
+import org.seedstack.neo4j.fixtures.ItemThrowableHandler;
 import org.seedstack.seed.transaction.Propagation;
 import org.seedstack.seed.transaction.Transactional;
 
