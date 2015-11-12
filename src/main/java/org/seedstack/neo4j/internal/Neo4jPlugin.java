@@ -7,9 +7,8 @@
  */
 package org.seedstack.neo4j.internal;
 
-import io.nuun.kernel.api.Plugin;
+import com.google.common.collect.Lists;
 import io.nuun.kernel.api.plugin.InitState;
-import io.nuun.kernel.api.plugin.PluginException;
 import io.nuun.kernel.api.plugin.context.InitContext;
 import io.nuun.kernel.api.plugin.request.ClasspathScanRequest;
 import io.nuun.kernel.core.AbstractPlugin;
@@ -29,7 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -52,25 +50,9 @@ public class Neo4jPlugin extends AbstractPlugin {
     @Override
     @SuppressWarnings("unchecked")
     public InitState init(InitContext initContext) {
-        Application application = null;
-        TransactionPlugin transactionPlugin = null;
-        Configuration neo4jConfiguration = null;
-
-        for (Plugin plugin : initContext.pluginsRequired()) {
-            if (plugin instanceof ApplicationPlugin) {
-                application = ((ApplicationPlugin) plugin).getApplication();
-                neo4jConfiguration = application.getConfiguration().subset(Neo4jPlugin.CONFIGURATION_PREFIX);
-            } else if (plugin instanceof TransactionPlugin) {
-                transactionPlugin = (TransactionPlugin) plugin;
-            }
-        }
-
-        if (application == null) {
-            throw new PluginException("Unable to find application plugin");
-        }
-        if (transactionPlugin == null) {
-            throw new PluginException("Unable to find transaction plugin");
-        }
+        Application application = initContext.dependency(ApplicationPlugin.class).getApplication();
+        TransactionPlugin transactionPlugin = initContext.dependency(TransactionPlugin.class);
+        Configuration neo4jConfiguration = application.getConfiguration().subset(Neo4jPlugin.CONFIGURATION_PREFIX);
 
         String[] graphDatabaseNames = neo4jConfiguration.getStringArray("databases");
 
@@ -126,11 +108,8 @@ public class Neo4jPlugin extends AbstractPlugin {
     }
 
     @Override
-    public Collection<Class<? extends Plugin>> requiredPlugins() {
-        Collection<Class<? extends Plugin>> plugins = new ArrayList<Class<? extends Plugin>>();
-        plugins.add(ApplicationPlugin.class);
-        plugins.add(TransactionPlugin.class);
-        return plugins;
+    public Collection<Class<?>> requiredPlugins() {
+        return Lists.<Class<?>>newArrayList(ApplicationPlugin.class, TransactionPlugin.class);
     }
 
     @Override
