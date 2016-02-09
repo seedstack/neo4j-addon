@@ -26,6 +26,8 @@
         <neo4j.version>2.2.3</neo4j.version>
 
         <compatibility.version>1.0.0</compatibility.version>
+
+        <bintray.package>neo4j-addon</bintray.package>
     </properties>
 
     <build>
