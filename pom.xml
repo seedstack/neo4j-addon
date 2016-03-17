@@ -19,7 +19,7 @@
 
     <groupId>org.seedstack.addons.neo4j</groupId>
     <artifactId>neo4j</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <properties>
         <seed.version>2.3.0-SNAPSHOT</seed.version>
