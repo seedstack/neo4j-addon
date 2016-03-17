@@ -12,12 +12,10 @@ import com.google.inject.name.Names;
 import com.google.inject.util.Providers;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.seedstack.neo4j.Neo4jExceptionHandler;
-import org.seedstack.seed.transaction.spi.TransactionConcern;
 import org.seedstack.seed.transaction.spi.TransactionalProxy;
 
 import java.util.Map;
 
-@TransactionConcern
 class Neo4jModule extends PrivateModule {
     private final Map<String, GraphDatabaseService> graphDatabaseServices;
     private final Map<String, Class<? extends Neo4jExceptionHandler>> exceptionHandlerClasses;
