@@ -22,7 +22,7 @@
     <version>1.0.1-SNAPSHOT</version>
 
     <properties>
-        <seed.version>2.1.0</seed.version>
+        <seed.version>2.3.0-SNAPSHOT</seed.version>
         <neo4j.version>2.2.3</neo4j.version>
 
         <compatibility.version>1.0.0</compatibility.version>
