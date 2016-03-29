@@ -1,3 +1,7 @@
+# Version 1.0.2 (?)
+
+* [chg] Update for SeedStack 16.4
+
 # Version 1.0.1 (2016-02-09)
 
 * [fix] Flawed release process made this add-on unusable by clients.
