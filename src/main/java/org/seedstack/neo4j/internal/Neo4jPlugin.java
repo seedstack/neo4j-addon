@@ -26,6 +26,7 @@ import org.seedstack.seed.transaction.internal.TransactionPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
@@ -120,12 +121,15 @@ public class Neo4jPlugin extends AbstractPlugin {
     private GraphDatabaseService createEmbeddedDatabase(String name, Configuration graphDatabaseConfiguration, Application application) {
         String path = graphDatabaseConfiguration.getString("path");
         String propertiesURL = graphDatabaseConfiguration.getString("properties");
+        File directory;
 
         if (path == null || path.isEmpty()) {
-            path = application.getStorageLocation(String.format("neo4j/%s", name)).getAbsolutePath();
+            directory = application.getStorageLocation(String.format("neo4j/%s", name));
+        } else {
+            directory = new File(path);
         }
 
-        GraphDatabaseBuilder databaseBuilder = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(path);
+        GraphDatabaseBuilder databaseBuilder = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(directory);
 
         if (propertiesURL != null && !propertiesURL.isEmpty()) {
             try {
