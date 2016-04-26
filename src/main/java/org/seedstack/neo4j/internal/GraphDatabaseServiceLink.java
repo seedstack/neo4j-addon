@@ -16,32 +16,51 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 class GraphDatabaseServiceLink implements TransactionalLink<GraphDatabaseService> {
-    private final ThreadLocal<Deque<Transaction>> perThreadObjectContainer = new ThreadLocal<Deque<Transaction>>() {
+    private final ThreadLocal<Deque<Holder>> perThreadObjectContainer = new ThreadLocal<Deque<Holder>>() {
         @Override
-        protected Deque<Transaction> initialValue() {
-            return new ArrayDeque<Transaction>();
+        protected Deque<Holder> initialValue() {
+            return new ArrayDeque<Holder>();
         }
     };
-    private GraphDatabaseService graphDatabaseService;
 
     public GraphDatabaseService get() {
-        if (this.perThreadObjectContainer.get().peek() == null) {
+        Holder holder = this.perThreadObjectContainer.get().peek();
+
+        if (holder == null) {
             throw SeedException.createNew(Neo4jErrorCodes.ACCESSING_DATABASE_OUTSIDE_TRANSACTION);
         }
-        return this.graphDatabaseService;
-    }
 
-    void push(GraphDatabaseService graphDatabaseService, Transaction transaction) {
-        this.perThreadObjectContainer.get().push(transaction);
-        this.graphDatabaseService = graphDatabaseService;
-    }
-
-    void pop() {
-        this.graphDatabaseService = null;
-        this.perThreadObjectContainer.get().pop();
+        return holder.graphDatabaseService;
     }
 
     Transaction getCurrentTransaction() {
-        return perThreadObjectContainer.get().peek();
+        Holder holder = perThreadObjectContainer.get().peek();
+        if (holder != null) {
+            return holder.transaction;
+        } else {
+            return null;
+        }
+    }
+
+    void push(GraphDatabaseService graphDatabaseService, Transaction transaction) {
+        this.perThreadObjectContainer.get().push(new Holder(graphDatabaseService, transaction));
+    }
+
+    void pop() {
+        Deque<Holder> holders = this.perThreadObjectContainer.get();
+        holders.pop();
+        if (holders.isEmpty()) {
+            perThreadObjectContainer.remove();
+        }
+    }
+
+    private static class Holder {
+        private final GraphDatabaseService graphDatabaseService;
+        private final Transaction transaction;
+
+        private Holder(GraphDatabaseService graphDatabaseService, Transaction transaction) {
+            this.graphDatabaseService = graphDatabaseService;
+            this.transaction = transaction;
+        }
     }
 }
