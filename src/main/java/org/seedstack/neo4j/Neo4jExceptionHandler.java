@@ -13,8 +13,6 @@ import org.seedstack.seed.transaction.spi.TransactionMetadata;
 
 /**
  * Neo4J flavor of {@link ExceptionHandler}.
- *
- * @author adrien.lauer@mpsa.com
  */
 public interface Neo4jExceptionHandler extends ExceptionHandler<Transaction> {
 

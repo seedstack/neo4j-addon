@@ -1,3 +1,7 @@
+# Version 2.0.0 (2017-01-12)
+
+* [brk] Update to new configuration system.
+
 # Version 1.0.2 (2016-04-24)
 
 * [chg] Compatible with Neo4J 3+, requires at least Neo4J 2.3+.

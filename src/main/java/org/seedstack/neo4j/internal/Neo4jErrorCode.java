@@ -7,13 +7,11 @@
  */
 package org.seedstack.neo4j.internal;
 
-import org.seedstack.seed.ErrorCode;
 
-enum Neo4jErrorCodes implements ErrorCode {
-    // Please keep it sorted
+import org.seedstack.shed.exception.ErrorCode;
+
+enum Neo4jErrorCode implements ErrorCode {
     ACCESSING_DATABASE_OUTSIDE_TRANSACTION,
     INVALID_DATABASE_SETTING,
-    INVALID_PROPERTIES_URL,
-    UNKNOWN_DATABASE_TYPE, // TODO missing error code
-    UNABLE_TO_LOAD_EXCEPTION_HANDLER_CLASS
+    UNSUPPORTED_DATABASE_TYPE
 }

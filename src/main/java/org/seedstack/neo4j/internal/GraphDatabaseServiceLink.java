@@ -27,7 +27,7 @@ class GraphDatabaseServiceLink implements TransactionalLink<GraphDatabaseService
         Holder holder = this.perThreadObjectContainer.get().peek();
 
         if (holder == null) {
-            throw SeedException.createNew(Neo4jErrorCodes.ACCESSING_DATABASE_OUTSIDE_TRANSACTION);
+            throw SeedException.createNew(Neo4jErrorCode.ACCESSING_DATABASE_OUTSIDE_TRANSACTION);
         }
 
         return holder.graphDatabaseService;

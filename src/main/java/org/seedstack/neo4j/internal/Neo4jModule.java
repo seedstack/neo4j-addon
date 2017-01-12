@@ -12,7 +12,7 @@ import com.google.inject.name.Names;
 import com.google.inject.util.Providers;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.seedstack.neo4j.Neo4jExceptionHandler;
-import org.seedstack.seed.transaction.spi.TransactionalProxy;
+import org.seedstack.seed.core.internal.transaction.TransactionalProxy;
 
 import java.util.Map;
 
