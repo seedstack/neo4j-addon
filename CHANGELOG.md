@@ -1,4 +1,4 @@
-# Version 2.0.0 (2017-01-12)
+# Version 2.0.0 (2017-01-13)
 
 * [brk] Update to new configuration system.
 
