@@ -23,7 +23,7 @@
 
     <properties>
         <seed.version>3.0.1</seed.version>
-        <neo4j.version>3.1.0</neo4j.version>
+        <neo4j.version>3.5.0</neo4j.version>
 
         <compatibility.skip>true</compatibility.skip>
 
